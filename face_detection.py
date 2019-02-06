@@ -3,6 +3,7 @@ import cv2
 face_cascade = cv2.CascadeClassifier(r'C:\Users\asus\.spyder-py3\final-year-project\ml\haarcascade_frontalface_default.xml')
 #https://github.com/Itseez/opencv/blob/master/data/haarcascades/haarcascade_eye.xml
 eye_cascade = cv2.CascadeClassifier(r'C:\Users\asus\.spyder-py3\final-year-project\ml\haarcascade_eye.xml')
+smile_cascade = cv2.CascadeClassifier(r'C:\Users\asus\.spyder-py3\final-year-project\ml\haarcascade_smile.xml')
 
 cap = cv2.VideoCapture(0)
      
@@ -19,6 +20,9 @@ while(cap.isOpened()):
         eyes = eye_cascade.detectMultiScale(roi_gray)
         for (ex,ey,ew,eh) in eyes:
             cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,0,255),2)
+        '''smile = smile_cascade.detectMultiScale(roi_gray)
+        for (sx,sy,sw,sh) in smile:
+            cv2.rectangle(roi_color,(sx,sy),(sx+sw,sy+sh),(0,255,0),2)'''
     
     cv2.imshow('frame',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
